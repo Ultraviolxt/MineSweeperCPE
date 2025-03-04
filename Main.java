@@ -1,4 +1,4 @@
-package MineSweeper;
+package MineSweeperGame;
 public class Main {
     /**
      * 

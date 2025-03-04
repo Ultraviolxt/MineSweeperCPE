@@ -1,16 +1,46 @@
-package MineSweeper;
+package MineSweeperGame;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import javax.swing.*;
-import javax.swing.JButton;
+import java.util.Random;
 
-public class MineSweeper extends OnScreen{
+import javax.swing.*;
+
+public class MineSweeper extends MainMethod {
+
+    // กำหนดค่าพื้นฐานสำหรับขนาดของช่องระเบิด
+    private int tileSize = 70; // ขนาดของช่องระเบิด
+    
+    // กำหนดค่าพื้นฐานสำหรับขนาดของกระดานเกม
+    private int numRows = 10; // จำนวนแถวของกระดาน
+    private int numCols = numRows; // จำนวนคอลัมน์ของกระดา
+    private int boardWidth = numCols * tileSize; // ความกว้างของกระดาน
+    private int boardHeight = numRows * tileSize; // ความสูงของกระดาน
+
+    // จำนวนระเบิดในกระดาน
+    private int mineCount; 
+    
+    // ตัวแปรที่ใช้เก็บข้อมูลของกระดานและระเบิด
+    private MineTile[][] board; // กระดานเกมแบบ 2 มิติ
+    private ArrayList<MineTile> mineList; // รายการของช่องที่มีระเบิด
+    private Random random = new Random(); // ใช้สุ่มตำแหน่งระเบิด
+    
+    // ตัวแปรสำหรับองค์ประกอบ GUI
+    private JFrame frame; // หน้าต่างของเกม
+    private JLabel textLabel; // ป้ายข้อความแสดงสถานะเกม
+    private JPanel textPanel, boardPanel; // แผงแสดงผลข้อความและกระดานเกม
+    private JButton replayButton; // ปุ่มสำหรับเริ่มเกมใหม่
+
+    // ตัวแปรสถานะของเกม
+    private int tilesClicked; // จำนวนช่องที่ถูกเปิด
+    private boolean gameOver; // ตัวแปรเก็บสถานะว่าเกมจบแล้วหรือไม่
 
     @Override
     public void initGame() {
         // คำนวณจำนวนลูกระเบิดให้เป็น 15% ของจำนวนช่องทั้งหมด
         mineCount = (int) Math.round(numRows * numCols * 0.15);
+        System.out.println("numRow: " + numRows + " numCol: " + numCols);
+        System.out.println("Number of mines: " + mineCount); // เพิ่มการแสดงผลจำนวนระเบิด
     
         // กำหนดขนาดฟอนต์ให้ลดลงเมื่อจำนวนแถวมากขึ้น
         int fontSize = Math.max(10, 50 - numRows);
@@ -129,7 +159,6 @@ public class MineSweeper extends OnScreen{
         
         MineTile tile = board[r][c];
         if (!tile.isEnabled()) return;
-        
         tile.setEnabled(false);
         tilesClicked++;
 
@@ -149,9 +178,9 @@ public class MineSweeper extends OnScreen{
             replayButton.setVisible(true);
         }
     }
-
+    
     // ตรวจสอบจำนวนระเบิดรอบๆ ช่องที่ระบุ
-    public int countMinesAround(int r, int c) {
+    private int countMinesAround(int r, int c) {
         int count = 0;
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
@@ -173,5 +202,25 @@ public class MineSweeper extends OnScreen{
                 checkMine(r + i, c + j);
             }
         }
+    }
+
+    // Getter สำหรับจำนวนแถว
+    public int getNumRows() {
+        return numRows;
+    }
+
+    // Getter สำหรับจำนวนคอลัมน์
+    public int getNumCols() {
+        return numCols;
+    }
+
+    // Setter สำหรับจำนวนแถว
+    public void setNumRows(int numRows) {
+        this.numRows = numRows;
+    }
+
+    // Setter สำหรับจำนวนคอลัมน์
+    public void setNumCols(int numCols) {
+        this.numCols = numCols;
     }
 }

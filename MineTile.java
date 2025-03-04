@@ -1,4 +1,4 @@
-package MineSweeper;
+package MineSweeperGame;
 import javax.swing.JButton;
 
 public class MineTile extends JButton {
@@ -11,19 +11,19 @@ public class MineTile extends JButton {
      * @param r = เลขแถวของช่องระเบิด
      * @param c = เลขคอลัมม์ของช่องระเบิด
      */
-
-    MineTile(int r, int c) {
+    public MineTile(int r, int c) {
         this.row = r;
         this.column = c;
     }
+
     /**
      * @return เลขแถวของช่องระเบิด
      */
     public int getRow(){
         return this.row;
     }
+
     /**
-    *
     * @return เลขคอลัมม์ของช่องระเบิด
     */
     public int getColumn(){
