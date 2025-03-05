@@ -39,8 +39,6 @@ public class MineSweeper extends MainMethod {
     public void initGame() {
         // คำนวณจำนวนลูกระเบิดให้เป็น 15% ของจำนวนช่องทั้งหมด
         mineCount = (int) Math.round(numRows * numCols * 0.15);
-        System.out.println("numRow: " + numRows + " numCol: " + numCols);
-        System.out.println("Number of mines: " + mineCount); // เพิ่มการแสดงผลจำนวนระเบิด
     
         // กำหนดขนาดฟอนต์ให้ลดลงเมื่อจำนวนแถวมากขึ้น
         int fontSize = Math.max(10, 50 - numRows);
