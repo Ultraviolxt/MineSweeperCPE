@@ -1,4 +1,4 @@
-package MineSweeperGame;
+package FinalGame;
 import javax.swing.JButton;
 
 public class MineTile extends JButton {

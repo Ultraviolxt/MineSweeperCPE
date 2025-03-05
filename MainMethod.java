@@ -1,4 +1,4 @@
-package MineSweeperGame;
+package FinalGame;
 
 public abstract class MainMethod {
     // เมธอด abstract ที่ต้องให้คลาสลูก Override เอง

@@ -1,4 +1,4 @@
-package MineSweeperGame;
+package FinalGame;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -222,5 +222,10 @@ public class MineSweeper extends MainMethod {
     // Setter สำหรับจำนวนคอลัมน์
     public void setNumCols(int numCols) {
         this.numCols = numCols;
+    }
+    
+    // Getter สำหรับรายการของช่องที่มีระเบิด
+    public int getMineCount() {
+        return mineCount;
     }
 }

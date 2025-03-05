@@ -1,33 +1,42 @@
-package MineSweeperGame;
+package FinalGame;
 
-// คลาสสำหรับทดสอบฟังก์ชันการทำงานของ MineSweeper
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 public class MineSweeperTest {
 
-    @Test // กำหนดให้เป็นเมธอดที่ใช้สำหรับทดสอบ
-    
-    public void testBoardSizeSelection() {
-        MineSweeper game = new MineSweeper();
+    private MineSweeper game;
 
+    // ตั้งค่าสำหรับการทดสอบแต่ละครั้ง
+    @BeforeEach
+    public void setUp() {
+        game = new MineSweeper();
+    }
+
+    // ทดสอบการตั้งค่าขนาดบอร์ด
+    @Test
+    public void testBoardSizeSelection() {
         // ทดสอบการตั้งค่าขนาดบอร์ดเป็น 8x8
         game.setNumRows(8);
         game.setNumCols(8);
-        assertEquals(8, game.getNumRows()); // ตรวจสอบว่าจำนวนแถวถูกตั้งค่าตามที่กำหนด
-        assertEquals(8, game.getNumCols()); // ตรวจสอบว่าจำนวนคอลัมน์ถูกตั้งค่าตามที่กำหนด
-        
+        assertEquals(8, game.getNumRows(), "Number of rows should be 8");
+        assertEquals(8, game.getNumCols(), "Number of columns should be 8");
+
         // ทดสอบการตั้งค่าขนาดบอร์ดเป็น 15x15
         game.setNumRows(15);
         game.setNumCols(15);
-        assertEquals(15, game.getNumRows()); // ตรวจสอบว่าจำนวนแถวถูกตั้งค่าตามที่กำหนด
-        assertEquals(15, game.getNumCols()); // ตรวจสอบว่าจำนวนคอลัมน์ถูกตั้งค่าตามที่กำหนด
+        assertEquals(15, game.getNumRows(), "Number of rows should be 15");
+        assertEquals(15, game.getNumCols(), "Number of columns should be 15");
     }
 
-    // เมธอดช่วยในการตรวจสอบค่า ว่าตรงกับที่คาดหวังหรือไม่
-    /**
-     * 
-     * @param expected ค่าที่คาดหวัง
-     * @param actual ค่าที่ได้รับจากการทดสอบ
-     */
-    private void assertEquals(int expected, int actual) {
-        throw new AssertionError("Expected: " + expected + " Got: " + actual);
+    // ทดสอบจำนวนระเบิดที่ตั้งค่าในเกม
+    @Test
+    public void testMineCount() {
+        game.setNumRows(10);
+        game.setNumCols(10);
+        game.initGame();
+        int expectedMineCount = (int) Math.round(10 * 10 * 0.15);
+        assertEquals(expectedMineCount, game.getMineCount(), "The mine count should be " + expectedMineCount);
     }
 }

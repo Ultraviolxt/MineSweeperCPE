@@ -1,4 +1,4 @@
-package MineSweeperGame;
+package FinalGame;
 import java.awt.*;
 import javax.swing.*;
 
